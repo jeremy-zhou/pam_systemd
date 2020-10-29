@@ -1,0 +1,13 @@
+[Unit]
+Description=restart vdsmd after vdsmd is started up
+After=vdsmd.service nvidia-vgpu-mgr.service multi-user.target
+
+[Service]
+Type=idle
+RemainAfterExit=yes
+
+ExecStart=/usr/local/bin/restart_vdsmd.sh start
+ExecStop=/usr/local/bin/restart_vdsmd.sh stop
+
+[Install]
+WantedBy=multi-user.target
